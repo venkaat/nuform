@@ -9,7 +9,7 @@ export default function TopAnnouncementBar() {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-[#1e392a] text-white text-xs sm:text-sm font-semibold py-3 px-4 transition-all duration-300 shadow-inner">
+    <div className="bg-[#1e392a]/90 backdrop-blur-md border-b border-white/10 text-white text-xs sm:text-sm font-semibold py-3 px-4 transition-all duration-300 shadow-inner">
       <button
         onClick={() => {}}
         className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-center w-full group cursor-pointer hover:underline"

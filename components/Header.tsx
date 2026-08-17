@@ -28,7 +28,7 @@ export default function Header({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm transition-all">
+    <header className="w-full bg-white/85 backdrop-blur-md border-b border-gray-200/50 shadow-sm transition-all duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-36 sm:h-44 md:h-48">
           

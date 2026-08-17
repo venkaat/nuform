@@ -55,9 +55,9 @@ export default function Home() {
         </div>
       )}
 
-      {/* Navigation & Top Announcement Bar - Fades down into view after Hero Loads */}
-      <div className={`sticky top-0 z-40 transition-all duration-1000 ease-out transform ${
-        isNavRevealed ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6 pointer-events-none"
+      {/* Navigation & Top Announcement Bar - Positioned fixed over CinematicHero, slides down into place */}
+      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ease-out transform ${
+        isNavRevealed ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
       }`}>
         <TopAnnouncementBar />
         <Header
@@ -68,11 +68,11 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex-1">
-        {/* Full Cinematic Hero Section */}
+        {/* Full-Bleed Cinematic Hero (Starts at Top 0, covering header space) */}
         <CinematicHero
           onOpenConsultation={handleOpenConsultation}
           onHeroLoaded={() => {
-            setTimeout(() => setIsNavRevealed(true), 600);
+            setTimeout(() => setIsNavRevealed(true), 500);
           }}
         />
 
