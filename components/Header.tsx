@@ -30,42 +30,24 @@ export default function Header({
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24 sm:h-28">
+        <div className="flex items-center justify-between h-28 sm:h-32">
           
           {/* LOGO */}
           <a href="#" className="flex items-center group py-2">
             <img
               src="/images/logo.png"
               alt="Nüform - Interior Designs & Constructions"
-              className="h-16 sm:h-20 md:h-22 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              className="h-20 sm:h-24 md:h-28 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
           </a>
 
-          {/* DESKTOP NAVIGATION */}
-          <nav className="hidden md:flex items-center space-x-7 text-xs font-bold tracking-widest text-neutral-800">
+          {/* DESKTOP NAVIGATION (SHORTENED & CLEAN) */}
+          <nav className="hidden md:flex items-center space-x-8 text-xs font-bold tracking-widest text-neutral-800">
             <a
               href="#projects"
               className="hover:text-red-600 transition-colors uppercase py-2"
             >
               PROJECTS
-            </a>
-            <a
-              href="#residential"
-              className="hover:text-red-600 transition-colors uppercase py-2"
-            >
-              RESIDENTIAL
-            </a>
-            <a
-              href="#commercial"
-              className="hover:text-red-600 transition-colors uppercase py-2"
-            >
-              COMMERCIAL
-            </a>
-            <a
-              href="#renovations"
-              className="hover:text-red-600 transition-colors uppercase py-2"
-            >
-              RENOVATIONS
             </a>
 
             {/* SERVICES DROPDOWN */}
@@ -182,9 +164,6 @@ export default function Header({
         <div className="md:hidden bg-white border-t border-gray-100 px-6 py-6 space-y-4 shadow-xl">
           <nav className="flex flex-col space-y-3 font-bold text-xs tracking-widest uppercase">
             <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>PROJECTS</a>
-            <a href="#residential" onClick={() => setIsMobileMenuOpen(false)}>RESIDENTIAL</a>
-            <a href="#commercial" onClick={() => setIsMobileMenuOpen(false)}>COMMERCIAL</a>
-            <a href="#renovations" onClick={() => setIsMobileMenuOpen(false)}>RENOVATIONS</a>
             <a href="#services" onClick={() => setIsMobileMenuOpen(false)}>SERVICES</a>
             <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>ABOUT</a>
           </nav>
