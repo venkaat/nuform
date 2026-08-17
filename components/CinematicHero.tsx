@@ -248,22 +248,7 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
 
       </div>
 
-      {/* FLOATING GLASS FEATURE BADGE (DESKTOP) */}
-      <div className="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 z-25 flex-col gap-2 p-4 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/20 max-w-xs shadow-2xl">
-        <div className="flex items-center gap-2 text-amber-400 text-xs font-bold">
-          <Layers className="w-4 h-4" />
-          <span>PROJECT SPECIFICATION</span>
-        </div>
-        <p className="text-xs text-white font-medium leading-relaxed">
-          {currentSlide.spec}
-        </p>
-        <div className="text-[10px] text-neutral-400 font-mono mt-1 pt-2 border-t border-white/10 flex justify-between">
-          <span>PROJECT: IGLOO SUITE</span>
-          <span className="text-emerald-400 font-bold">COMPLETED</span>
-        </div>
-      </div>
-
-      {/* FANCY INTERACTIVE THUMBNAIL DOCK (BOTTOM RIGHT) */}
+      {/* INTERACTIVE THUMBNAIL DOCK (BOTTOM RIGHT) */}
       <div className="hidden sm:flex absolute right-8 bottom-16 z-30 flex-col gap-2 bg-black/70 backdrop-blur-2xl p-2.5 rounded-2xl border border-white/20 shadow-2xl">
         <div className="flex items-center justify-between px-2 pt-1 pb-1.5 text-[10px] font-bold text-neutral-300 uppercase tracking-widest">
           <span>PROJECT GALLERY</span>
@@ -323,7 +308,7 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
         </div>
       </div>
 
-      {/* SLIDE NAVIGATION CONTROLS & AUTOPLAY TOGGLE */}
+      {/* SLIDE NAVIGATION CONTROLS (PREV/NEXT ONLY) */}
       <div className="absolute left-6 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-3">
         <button
           onClick={handlePrev}
@@ -331,13 +316,6 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
           className="p-3.5 text-white/80 hover:text-white bg-black/50 hover:bg-amber-600/80 backdrop-blur-xl rounded-full transition-all border border-white/20 shadow-xl cursor-pointer hover:scale-110"
         >
           <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button
-          onClick={() => setIsPlaying(!isPlaying)}
-          aria-label={isPlaying ? "Pause Slideshow" : "Play Slideshow"}
-          className="p-3.5 text-amber-400 hover:text-white bg-black/50 hover:bg-black/80 backdrop-blur-xl rounded-full transition-all border border-white/20 shadow-xl cursor-pointer hover:scale-110"
-        >
-          {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
         </button>
       </div>
 
