@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Sparkles, ShieldCheck, Award, Users } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown, Sparkles, ShieldCheck, Award, Users } from "lucide-react";
 
 interface CinematicHeroProps {
   onOpenConsultation: (serviceOrDesigner?: string) => void;
@@ -95,7 +95,7 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full h-[700px] sm:h-[780px] lg:h-[850px] bg-black overflow-hidden select-none"
+      className="relative w-full h-screen min-h-[100dvh] bg-black overflow-hidden select-none"
     >
       
       {/* BACKGROUND SLIDES WITH SLOW ZOOM & MOUSE PARALLAX EFFECT */}
@@ -218,20 +218,32 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* SLIDE PROGRESS DOTS */}
-      <div className="absolute bottom-16 sm:bottom-12 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3 bg-black/50 px-5 py-2.5 rounded-full backdrop-blur-md border border-white/10">
-        {CINEMATIC_SLIDES.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            aria-label={`Go to slide ${idx + 1}`}
-            className={`transition-all duration-500 ${
-              idx === currentIndex
-                ? "w-8 h-2.5 bg-[#e50914] rounded-full"
-                : "w-2.5 h-2.5 bg-white/50 hover:bg-white rounded-full"
-            }`}
-          />
-        ))}
+      {/* SLIDE PROGRESS DOTS & SCROLL INDICATOR */}
+      <div className="absolute bottom-16 sm:bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3">
+        <button
+          onClick={() => {
+            window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+          }}
+          className="flex items-center gap-1.5 text-[11px] font-bold text-white/80 hover:text-white uppercase tracking-widest bg-black/40 hover:bg-black/70 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15 transition-all group animate-bounce cursor-pointer"
+        >
+          <span>Scroll to explore</span>
+          <ChevronDown className="w-3.5 h-3.5 text-red-500 group-hover:translate-y-0.5 transition-transform" />
+        </button>
+
+        <div className="flex items-center gap-3 bg-black/50 px-5 py-2 rounded-full backdrop-blur-md border border-white/10">
+          {CINEMATIC_SLIDES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`transition-all duration-500 ${
+                idx === currentIndex
+                  ? "w-8 h-2.5 bg-[#e50914] rounded-full"
+                  : "w-2.5 h-2.5 bg-white/50 hover:bg-white rounded-full"
+              }`}
+            />
+          ))}
+        </div>
       </div>
 
     </section>
