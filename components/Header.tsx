@@ -30,14 +30,14 @@ export default function Header({
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-28 sm:h-32">
+        <div className="flex items-center justify-between h-36 sm:h-44 md:h-48">
           
           {/* LOGO */}
           <a href="#" className="flex items-center group py-2">
             <img
               src="/images/logo.png"
               alt="Nüform - Interior Designs & Constructions"
-              className="h-20 sm:h-24 md:h-28 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              className="h-28 sm:h-36 md:h-40 lg:h-44 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
           </a>
 

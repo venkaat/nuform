@@ -94,11 +94,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-neutral-800">
             <div>
-              <a href="#" className="inline-block mb-4 p-2.5 bg-white rounded-md shadow-md">
+              <a href="#" className="inline-block mb-4 p-3 bg-white rounded-lg shadow-lg">
                 <img
                   src="/images/logo.png"
                   alt="Nüform - Interior Designs & Constructions"
-                  className="h-14 sm:h-16 w-auto object-contain"
+                  className="h-20 sm:h-24 md:h-28 w-auto object-contain"
                 />
               </a>
               <p className="text-xs leading-relaxed text-neutral-400">
