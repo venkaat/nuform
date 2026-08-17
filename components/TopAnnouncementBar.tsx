@@ -1,24 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export default function TopAnnouncementBar() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible] = useState(true);
 
   if (!isVisible) return null;
 
   return (
-    <div className="bg-[#1e392a]/90 backdrop-blur-md border-b border-white/10 text-white text-xs sm:text-sm font-semibold py-3 px-4 transition-all duration-300 shadow-inner">
+    <div className="bg-black/60 backdrop-blur-xl border-b border-white/10 text-white text-xs font-semibold py-2.5 px-4 transition-all duration-300 shadow-lg">
       <button
         onClick={() => {}}
-        className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-center w-full group cursor-pointer hover:underline"
+        className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-center w-full group cursor-pointer hover:text-amber-400 transition-colors"
       >
-        <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
-        <span className="tracking-wide">
-          Start your dream home project with a Free 3D Design Consultation
+        <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0 animate-pulse" />
+        <span className="tracking-wide text-xs sm:text-xs">
+          Start your luxury project with a <strong className="text-amber-400">Free 3D Architectural Consultation</strong>
         </span>
-        <span className="text-sm transition-transform group-hover:translate-x-1">
+        <span className="text-xs transition-transform group-hover:translate-x-1 font-bold">
           &rsaquo;
         </span>
       </button>
