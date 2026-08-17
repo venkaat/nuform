@@ -17,6 +17,7 @@ export default function Home() {
   const [selectedService, setSelectedService] = useState<string>("");
   const [selectedDesigner, setSelectedDesigner] = useState<string>("");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isNavRevealed, setIsNavRevealed] = useState(false);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -54,20 +55,25 @@ export default function Home() {
         </div>
       )}
 
-      {/* Top Announcement Bar */}
-      <TopAnnouncementBar />
-
-      {/* Navigation Header */}
-      <Header
-        onOpenSearch={() => setIsSearchOpen(true)}
-        onOpenConsultation={handleOpenConsultation}
-      />
+      {/* Navigation & Top Announcement Bar - Fades down into view after Hero Loads */}
+      <div className={`sticky top-0 z-40 transition-all duration-1000 ease-out transform ${
+        isNavRevealed ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6 pointer-events-none"
+      }`}>
+        <TopAnnouncementBar />
+        <Header
+          onOpenSearch={() => setIsSearchOpen(true)}
+          onOpenConsultation={handleOpenConsultation}
+        />
+      </div>
 
       {/* Main Content */}
       <main className="flex-1">
         {/* Full Cinematic Hero Section */}
         <CinematicHero
           onOpenConsultation={handleOpenConsultation}
+          onHeroLoaded={() => {
+            setTimeout(() => setIsNavRevealed(true), 600);
+          }}
         />
 
         {/* Starbucks Style Split Grid Block Sections */}

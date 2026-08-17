@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Play, Sparkles, ShieldCheck, Award, Users } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight, Sparkles, ShieldCheck, Award, Users } from "lucide-react";
 
 interface CinematicHeroProps {
   onOpenConsultation: (serviceOrDesigner?: string) => void;
+  onHeroLoaded?: () => void;
 }
 
 const CINEMATIC_SLIDES = [
@@ -13,7 +14,7 @@ const CINEMATIC_SLIDES = [
     image: "/images/hero_living_room.jpg",
     category: "RESIDENTIAL ARCHITECTURE",
     title: "BUILT TO INSPIRE.\nBEYOND THE SURFACE.",
-    subtitle: "Luxury interior transformations crafted with precision space planning and bespoke ambient cove lighting.",
+    subtitle: "Luxury interior transformations crafted with precision space planning, bespoke furniture, and ambient cove lighting.",
     cta: "Explore Living Rooms",
   },
   {
@@ -34,23 +35,50 @@ const CINEMATIC_SLIDES = [
   },
   {
     id: 4,
-    image: "/images/urban_loft.jpg",
-    category: "BESPOKE WARDROBES & LOFTS",
-    title: "TAILORED COMFORT.\nDEFINED BY ELEGANCE.",
-    subtitle: "Walk-in wardrobes, sliding glass closet doors, and custom master suite space optimization.",
-    cta: "Discover Wardrobes",
+    image: "/images/ranjith_lead_designer.jpg",
+    category: "LEAD DESIGN STUDIO",
+    title: "EXPERT DESIGN.\nPERFECT EXECUTION.",
+    subtitle: "Collaborate directly with Lead Designer Ranjith for 3D walkthrough previews and tailored architectural plans.",
+    cta: "Meet Lead Designer",
   },
 ];
 
-export default function CinematicHero({ onOpenConsultation }: CinematicHeroProps) {
+export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: CinematicHeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  // Trigger hero loaded signal & entrance timing
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+      if (onHeroLoaded) onHeroLoaded();
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [onHeroLoaded]);
+
+  // Auto slide cycle
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % CINEMATIC_SLIDES.length);
-    }, 7000);
+    }, 8000);
     return () => clearInterval(timer);
   }, []);
+
+  // Mouse Parallax movement handler
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // Range -1 to 1
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2; // Range -1 to 1
+    setMousePos({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    // Smooth reset to center
+    setMousePos({ x: 0, y: 0 });
+  };
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + CINEMATIC_SLIDES.length) % CINEMATIC_SLIDES.length);
@@ -63,9 +91,14 @@ export default function CinematicHero({ onOpenConsultation }: CinematicHeroProps
   const currentSlide = CINEMATIC_SLIDES[currentIndex];
 
   return (
-    <section className="relative w-full h-[680px] sm:h-[750px] lg:h-[820px] bg-black overflow-hidden select-none">
+    <section
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative w-full h-[700px] sm:h-[780px] lg:h-[850px] bg-black overflow-hidden select-none"
+    >
       
-      {/* BACKGROUND SLIDES WITH KEN BURNS EFFECT */}
+      {/* BACKGROUND SLIDES WITH SLOW ZOOM & MOUSE PARALLAX EFFECT */}
       {CINEMATIC_SLIDES.map((slide, idx) => (
         <div
           key={slide.id}
@@ -73,56 +106,79 @@ export default function CinematicHero({ onOpenConsultation }: CinematicHeroProps
             idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
         >
+          {/* Parallax Layer 1: Background Image with Slow Ken Burns Zoom */}
           <div
-            className="w-full h-full bg-cover bg-center transform scale-105 transition-transform duration-[10000ms] ease-out"
-            style={{ backgroundImage: `url('${slide.image}')` }}
+            className={`w-full h-full bg-cover bg-center transition-transform duration-300 ease-out ${
+              idx === currentIndex ? "animate-ken-burns" : ""
+            }`}
+            style={{
+              backgroundImage: `url('${slide.image}')`,
+              transform: `translate3d(${mousePos.x * -22}px, ${mousePos.y * -22}px, 0px) scale(1.12)`,
+            }}
           />
-          {/* Cinematic Dark Gradient Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-black/80" />
+
+          {/* Vignette Gradients for High Contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 pointer-events-none" />
         </div>
       ))}
 
-      {/* CENTERED CINEMATIC CONTENT */}
-      <div className="relative z-20 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center pb-16 pt-10">
+      {/* FOREGROUND CONTENT WITH FADE-UPWARD STAGGERED ANIMATIONS & MOUSE COUNTER-PARALLAX */}
+      <div
+        className="relative z-20 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center pb-20 pt-16 transition-transform duration-300 ease-out"
+        style={{
+          transform: `translate3d(${mousePos.x * 12}px, ${mousePos.y * 12}px, 0px)`,
+        }}
+      >
         
-        {/* Glowing Pill Category Badge */}
-        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-white text-xs font-bold uppercase tracking-widest mb-6 animate-pulse">
-          <Sparkles className="w-3.5 h-3.5 text-red-500" />
-          <span>{currentSlide.category}</span>
+        {/* Effect 2: Text Fades Upward - Category Badge (Keyed per slide) */}
+        <div key={`badge-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:200ms]">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/25 px-5 py-2 rounded-full text-white text-xs font-bold uppercase tracking-widest mb-6 shadow-xl">
+            <Sparkles className="w-4 h-4 text-red-500 animate-pulse" />
+            <span>{currentSlide.category}</span>
+          </div>
         </div>
 
-        {/* Main Cinematic Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight uppercase leading-[1.05] max-w-5xl font-sans drop-shadow-2xl whitespace-pre-line">
-          {currentSlide.title}
-        </h1>
+        {/* Effect 2: Text Fades Upward - Main Title (Keyed per slide) */}
+        <div key={`title-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:500ms]">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight uppercase leading-[1.04] max-w-5xl font-sans drop-shadow-2xl whitespace-pre-line">
+            {currentSlide.title}
+          </h1>
+        </div>
 
-        {/* Subtitle */}
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl font-normal leading-relaxed text-shadow">
-          {currentSlide.subtitle}
-        </p>
+        {/* Effect 2: Text Fades Upward - Subtitle (Keyed per slide) */}
+        <div key={`sub-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:800ms]">
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-neutral-200 max-w-2xl font-normal leading-relaxed drop-shadow-md">
+            {currentSlide.subtitle}
+          </p>
+        </div>
 
-        {/* CTA Action Buttons */}
-        <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+        {/* Effect 2: Text Fades Upward - CTA Action Buttons (Keyed per slide) */}
+        <div key={`cta-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:1100ms] mt-9 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
           <button
             onClick={() => onOpenConsultation(currentSlide.cta)}
-            className="w-full sm:w-auto bg-[#e50914] hover:bg-red-700 text-white px-8 py-4 font-extrabold text-xs sm:text-sm uppercase tracking-widest transition-all transform hover:scale-105 shadow-2xl rounded-full border border-red-500"
+            className="w-full sm:w-auto bg-[#e50914] hover:bg-red-700 text-white px-9 py-4 font-extrabold text-xs sm:text-sm uppercase tracking-widest transition-all transform hover:scale-105 shadow-2xl rounded-full border border-red-500"
           >
             {currentSlide.cta} &rarr;
           </button>
 
           <button
             onClick={() => onOpenConsultation("Ranjith - Lead Designer")}
-            className="w-full sm:w-auto bg-white/15 hover:bg-white hover:text-black backdrop-blur-md text-white px-8 py-4 font-extrabold text-xs sm:text-sm uppercase tracking-widest border border-white/40 transition-all transform hover:scale-105 rounded-full shadow-lg"
+            className="w-full sm:w-auto bg-white/15 hover:bg-white hover:text-black backdrop-blur-md text-white px-9 py-4 font-extrabold text-xs sm:text-sm uppercase tracking-widest border border-white/40 transition-all transform hover:scale-105 rounded-full shadow-lg"
           >
-            Book 3D Consultation
+            Book 3D Walkthrough
           </button>
         </div>
 
       </div>
 
-      {/* CINEMATIC STATS BAR AT BOTTOM */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 bg-black/60 backdrop-blur-md border-t border-neutral-800 py-3 px-6 hidden md:block">
+      {/* STATS BAR AT BOTTOM */}
+      <div
+        className="absolute bottom-0 left-0 right-0 z-30 bg-black/60 backdrop-blur-md border-t border-neutral-800 py-3.5 px-6 hidden md:block transition-transform duration-300 ease-out"
+        style={{
+          transform: `translate3d(${mousePos.x * -6}px, ${mousePos.y * -6}px, 0px)`,
+        }}
+      >
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-neutral-300 font-medium">
           <div className="flex items-center gap-2">
             <Award className="w-4 h-4 text-red-500" />
