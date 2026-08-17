@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import TopAnnouncementBar from "@/components/TopAnnouncementBar";
 import Header from "@/components/Header";
+import CinematicHero from "@/components/CinematicHero";
 import StarbucksSplitGrid from "@/components/StarbucksSplitGrid";
 import CategoryGrid from "@/components/CategoryGrid";
 import ServicesSection from "@/components/ServicesSection";
@@ -64,6 +65,11 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex-1">
+        {/* Full Cinematic Hero Section */}
+        <CinematicHero
+          onOpenConsultation={handleOpenConsultation}
+        />
+
         {/* Starbucks Style Split Grid Block Sections */}
         <StarbucksSplitGrid
           onOpenConsultation={handleOpenConsultation}
