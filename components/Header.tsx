@@ -49,14 +49,14 @@ export default function Header({
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 sm:h-24">
+        <div className="flex items-center justify-between h-24 sm:h-28">
           
           {/* LOGO (TRANSPARENT BACKGROUND) */}
           <a href="#" className="flex items-center group py-2">
             <img
               src="/images/logo_light.png"
               alt="Nüform - Interior Designs & Architecture"
-              className="h-10 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105 filter drop-shadow-md"
+              className="h-14 sm:h-20 md:h-22 lg:h-24 w-auto object-contain transition-transform group-hover:scale-105 filter drop-shadow-md"
             />
           </a>
 
