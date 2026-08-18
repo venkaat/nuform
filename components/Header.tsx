@@ -51,15 +51,13 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24">
           
-          {/* LOGO WITH CLEAN GLASS EMBED BADGE */}
+          {/* LOGO (TRANSPARENT BACKGROUND) */}
           <a href="#" className="flex items-center group py-2">
-            <div className="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/40 shadow-lg group-hover:bg-white transition-all transform group-hover:scale-105">
-              <img
-                src="/images/logo.png"
-                alt="Nüform - Interior Designs & Architecture"
-                className="h-10 sm:h-12 w-auto object-contain"
-              />
-            </div>
+            <img
+              src="/images/logo_light.png"
+              alt="Nüform - Interior Designs & Architecture"
+              className="h-10 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105 filter drop-shadow-md"
+            />
           </a>
 
           {/* DESKTOP NAVIGATION */}
