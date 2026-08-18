@@ -213,17 +213,9 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
           </div>
         </div>
 
-        {/* Main Title - Compact 1-2 lines on mobile */}
-        <div key={`title-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:400ms]">
-          <h1 className="text-2xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight uppercase leading-tight sm:leading-[1.04] max-w-5xl font-sans drop-shadow-[0_15px_25px_rgba(0,0,0,0.95)]">
-            <span className="sm:hidden">{currentSlide.title.replace(/\n/g, " ")}</span>
-            <span className="hidden sm:inline whitespace-pre-line">{currentSlide.title}</span>
-          </h1>
-        </div>
-
-        {/* Subtitle - Visible on Desktop/Tablet, Hidden on Mobile for Maximum Image Breathing Room */}
-        <div key={`sub-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:650ms] hidden sm:block">
-          <p className="mt-5 text-base sm:text-lg md:text-xl text-neutral-200 max-w-2xl font-normal leading-relaxed drop-shadow-lg">
+        {/* Smaller Wording (Clean Crisp White Text) */}
+        <div key={`sub-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:400ms]">
+          <p className="mt-2 text-sm sm:text-lg md:text-xl text-white font-medium max-w-2xl leading-relaxed drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]">
             {currentSlide.subtitle}
           </p>
         </div>
