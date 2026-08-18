@@ -191,9 +191,9 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
         ))}
       </div>
 
-      {/* FOREGROUND CONTENT WITH STAGGERED FADE-UP ANIMATIONS */}
+      {/* FOREGROUND CONTENT - OPTIMIZED FOR UNCLUTTERED MOBILE VIEW */}
       <div
-        className="relative z-20 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center pb-28 pt-20 transition-transform duration-300 ease-out"
+        className="relative z-20 h-full max-w-7xl mx-auto px-5 flex flex-col justify-end sm:justify-center items-center text-center pb-24 sm:pb-28 pt-28 sm:pt-20 transition-transform duration-300 ease-out"
         style={{
           transform: `translate3d(${mousePos.x * 10}px, ${mousePos.y * 10}px, 0px)`,
         }}
@@ -201,37 +201,38 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
         
         {/* Category Badge */}
         <div key={`badge-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:150ms]">
-          <div className="inline-flex items-center gap-2.5 bg-neutral-900/80 backdrop-blur-xl border border-white/20 px-5 py-2 rounded-full text-white text-xs font-bold uppercase tracking-widest mb-5 shadow-2xl">
-            <Sparkles className="w-4 h-4 text-amber-500 animate-pulse" />
-            <span className="bg-gradient-to-r from-white via-neutral-200 to-amber-200 bg-clip-text text-transparent">
+          <div className="inline-flex items-center gap-2 bg-neutral-900/80 backdrop-blur-xl border border-white/20 px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-3 sm:mb-5 shadow-2xl">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-pulse" />
+            <span className="hidden sm:inline bg-gradient-to-r from-white via-neutral-200 to-amber-200 bg-clip-text text-transparent">
               {currentSlide.category}
             </span>
-            <span className="h-3 w-px bg-white/20" />
-            <span className="text-[10px] text-amber-400 font-mono tracking-wider">
+            <span className="hidden sm:inline h-3 w-px bg-white/20" />
+            <span className="text-amber-400 font-mono tracking-wider">
               {currentSlide.tag}
             </span>
           </div>
         </div>
 
-        {/* Main Title */}
+        {/* Main Title - Compact 1-2 lines on mobile */}
         <div key={`title-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:400ms]">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight uppercase leading-[1.04] max-w-5xl font-sans drop-shadow-[0_20px_30px_rgba(0,0,0,0.9)] whitespace-pre-line">
-            {currentSlide.title}
+          <h1 className="text-2xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight uppercase leading-tight sm:leading-[1.04] max-w-5xl font-sans drop-shadow-[0_15px_25px_rgba(0,0,0,0.95)]">
+            <span className="sm:hidden">{currentSlide.title.replace(/\n/g, " ")}</span>
+            <span className="hidden sm:inline whitespace-pre-line">{currentSlide.title}</span>
           </h1>
         </div>
 
-        {/* Subtitle */}
-        <div key={`sub-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:650ms]">
+        {/* Subtitle - Visible on Desktop/Tablet, Hidden on Mobile for Maximum Image Breathing Room */}
+        <div key={`sub-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:650ms] hidden sm:block">
           <p className="mt-5 text-base sm:text-lg md:text-xl text-neutral-200 max-w-2xl font-normal leading-relaxed drop-shadow-lg">
             {currentSlide.subtitle}
           </p>
         </div>
 
-        {/* CTA Action Buttons */}
-        <div key={`cta-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:900ms] mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+        {/* CTA Action Buttons - Streamlined Single Button on Mobile */}
+        <div key={`cta-${currentIndex}`} className="opacity-0 animate-fade-up [animation-delay:900ms] mt-5 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
           <button
             onClick={() => onOpenConsultation(currentSlide.cta)}
-            className="w-full sm:w-auto bg-gradient-to-r from-[#e50914] to-amber-600 hover:from-red-700 hover:to-amber-700 text-white px-9 py-4 font-extrabold text-xs sm:text-sm uppercase tracking-widest transition-all transform hover:scale-105 shadow-[0_15px_30px_rgba(229,9,20,0.4)] rounded-full border border-red-500/80 flex items-center justify-center gap-2 group cursor-pointer"
+            className="w-full sm:w-auto bg-gradient-to-r from-[#e50914] to-amber-600 hover:from-red-700 hover:to-amber-700 text-white px-7 py-3 sm:px-9 sm:py-4 font-extrabold text-xs sm:text-sm uppercase tracking-widest transition-all transform hover:scale-105 shadow-[0_15px_30px_rgba(229,9,20,0.4)] rounded-full border border-red-500/80 flex items-center justify-center gap-2 group cursor-pointer"
           >
             <span>{currentSlide.cta}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -239,7 +240,7 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
 
           <button
             onClick={() => setIsFullscreen(true)}
-            className="w-full sm:w-auto bg-white/10 hover:bg-white hover:text-black backdrop-blur-xl text-white px-8 py-4 font-extrabold text-xs sm:text-sm uppercase tracking-widest border border-white/30 transition-all transform hover:scale-105 rounded-full shadow-2xl flex items-center justify-center gap-2 cursor-pointer"
+            className="hidden sm:flex w-full sm:w-auto bg-white/10 hover:bg-white hover:text-black backdrop-blur-xl text-white px-8 py-4 font-extrabold text-xs sm:text-sm uppercase tracking-widest border border-white/30 transition-all transform hover:scale-105 rounded-full shadow-2xl items-center justify-center gap-2 cursor-pointer"
           >
             <Maximize2 className="w-4 h-4" />
             <span>View Fullscreen Gallery</span>
