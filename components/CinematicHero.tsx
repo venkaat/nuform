@@ -241,35 +241,7 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
 
       </div>
 
-      {/* INTERACTIVE THUMBNAIL DOCK (BOTTOM RIGHT) */}
-      <div className="hidden sm:flex absolute right-8 bottom-16 z-30 flex-col gap-2 bg-black/70 backdrop-blur-2xl p-2.5 rounded-2xl border border-white/20 shadow-2xl">
-        <div className="flex items-center justify-between px-2 pt-1 pb-1.5 text-[10px] font-bold text-neutral-300 uppercase tracking-widest">
-          <span>PROJECT GALLERY</span>
-          <span className="text-amber-400 font-mono">{currentIndex + 1} / 5</span>
-        </div>
-        <div className="flex items-center gap-2">
-          {CINEMATIC_SLIDES.map((slide, idx) => (
-            <button
-              key={slide.id}
-              onClick={() => selectSlide(idx)}
-              className={`relative group w-16 h-12 rounded-lg overflow-hidden border-2 transition-all duration-300 cursor-pointer ${
-                idx === currentIndex
-                  ? "border-amber-400 scale-110 shadow-[0_0_15px_rgba(245,158,11,0.6)]"
-                  : "border-white/20 opacity-60 hover:opacity-100 hover:border-white"
-              }`}
-            >
-              <img
-                src={slide.image}
-                alt={slide.tag}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              {idx === currentIndex && (
-                <div className="absolute inset-0 bg-amber-500/20 pointer-events-none" />
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
+
 
       {/* STATS BAR AT BOTTOM */}
       <div
