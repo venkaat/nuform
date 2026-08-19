@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import TopAnnouncementBar from "@/components/TopAnnouncementBar";
 import Header from "@/components/Header";
 import CinematicHero from "@/components/CinematicHero";
+import CategoryQuickBar from "@/components/CategoryQuickBar";
 import StarbucksSplitGrid from "@/components/StarbucksSplitGrid";
 import CategoryGrid from "@/components/CategoryGrid";
 import ServicesSection from "@/components/ServicesSection";
@@ -72,6 +73,13 @@ export default function Home() {
           onOpenConsultation={handleOpenConsultation}
           onHeroLoaded={() => {
             setTimeout(() => setIsNavRevealed(true), 500);
+          }}
+        />
+
+        {/* Floating Category Quick Bar (Interior, Exterior, Curtains, Name Boards, Modular Kitchen, Smart Automation) */}
+        <CategoryQuickBar
+          onSelectCategory={(catName) => {
+            handleOpenConsultation(catName);
           }}
         />
 
