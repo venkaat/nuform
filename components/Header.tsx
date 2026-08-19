@@ -50,22 +50,11 @@ export default function Header({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className={`flex items-center justify-between transition-all duration-500 ${
+          className={`relative flex items-center justify-between transition-all duration-500 ${
             isScrolled ? "h-[70px]" : "h-[100px]"
           }`}
         >
-          {/* LOGO (TRANSPARENT BACKGROUND) */}
-          <a href="#" className="flex items-center group py-1">
-            <img
-              src="/images/logo_light.png"
-              alt="Nüform - Interior Designs & Architecture"
-              className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 filter drop-shadow-md ${
-                isScrolled ? "h-[55px]" : "h-[80px]"
-              }`}
-            />
-          </a>
-
-          {/* DESKTOP NAVIGATION */}
+          {/* DESKTOP NAVIGATION (LEFT) */}
           <nav className="hidden md:flex items-center space-x-8 text-xs font-bold tracking-widest text-white">
             <a
               href="#projects"
@@ -90,7 +79,7 @@ export default function Header({
 
               {/* Mega Dropdown Menu */}
               {isServicesOpen && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full w-[700px] bg-neutral-950/95 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-2xl p-6 grid grid-cols-3 gap-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute left-0 top-full w-[700px] bg-neutral-950/95 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-2xl p-6 grid grid-cols-3 gap-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="col-span-3 border-b border-white/10 pb-3 mb-1 flex justify-between items-center">
                     <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">
                       Our Architectural Services
@@ -135,8 +124,22 @@ export default function Header({
             </a>
           </nav>
 
+          {/* CENTERED LOGO */}
+          <a
+            href="#"
+            className="absolute left-1/2 -translate-x-1/2 flex items-center group py-1 z-10"
+          >
+            <img
+              src="/images/logo_light.png"
+              alt="Nüform - Interior Designs & Architecture"
+              className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 filter drop-shadow-md ${
+                isScrolled ? "h-[55px]" : "h-[80px]"
+              }`}
+            />
+          </a>
+
           {/* RIGHT ACTION BUTTONS */}
-          <div className="flex items-center space-x-3 sm:space-x-5 text-white">
+          <div className="flex items-center space-x-3 sm:space-x-5 text-white ml-auto">
             <a
               href="#projects"
               className="hidden lg:flex items-center gap-1.5 text-xs font-bold text-neutral-200 hover:text-amber-400 transition-colors py-2 px-1"
