@@ -104,7 +104,7 @@ export default function Home() {
                 <img
                   src="/images/logo_light.png"
                   alt="Nüform - Interior Designs & Constructions"
-                  className="h-20 sm:h-24 md:h-28 w-auto object-contain"
+                  className="h-28 sm:h-36 md:h-48 lg:h-56 xl:h-64 w-auto object-contain drop-shadow-lg"
                 />
               </a>
               <p className="text-xs leading-relaxed text-neutral-400">
