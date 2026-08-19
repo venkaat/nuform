@@ -17,14 +17,14 @@ export default function CartDrawer({ isOpen, onClose, cartCount }: CartDrawerPro
       id: 1,
       title: "Custom Acrylic Modular Kitchen Package",
       category: "Modular Kitchen Design",
-      price: 4950,
+      price: 249000,
       image: "/images/cat_kitchen.jpg",
     },
     {
       id: 2,
       title: "Minimalist Executive Office Desk & Ergonomic Chair",
       category: "Workspaces",
-      price: 1280,
+      price: 65000,
       image: "/images/cat_workspace.jpg",
     },
   ];
@@ -71,7 +71,7 @@ export default function CartDrawer({ isOpen, onClose, cartCount }: CartDrawerPro
                   </div>
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-xs font-extrabold text-gray-900">
-                      ${item.price.toLocaleString()}
+                      ₹{item.price.toLocaleString("en-IN")}
                     </span>
                     <button className="text-gray-400 hover:text-red-600 transition-colors">
                       <Trash2 className="w-4 h-4" />
@@ -87,7 +87,7 @@ export default function CartDrawer({ isOpen, onClose, cartCount }: CartDrawerPro
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-500 font-medium">Estimated Subtotal</span>
               <span className="font-extrabold text-gray-900 text-base">
-                ${total.toLocaleString()}
+                ₹{total.toLocaleString("en-IN")}
               </span>
             </div>
             <p className="text-[11px] text-gray-500">

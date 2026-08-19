@@ -23,7 +23,7 @@ export default function ConsultationModal({
     email: "",
     service: initialService || INTERIOR_SERVICES[0].title,
     designer: initialDesigner || "Ranjith - Lead Designer",
-    budget: "$5,000 - $15,000",
+    budget: "₹3,00,000 - ₹7,00,000",
     date: "",
     notes: "",
   });
@@ -112,7 +112,7 @@ export default function ConsultationModal({
                     <input
                       type="tel"
                       required
-                      placeholder="+1 (555) 000-0000"
+                      placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full pl-9 pr-3 py-2.5 text-xs bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-red-600 focus:bg-white text-gray-900"
@@ -150,10 +150,10 @@ export default function ConsultationModal({
                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                     className="w-full px-3 py-2.5 text-xs bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-red-600 text-gray-900 font-medium"
                   >
-                    <option>$3,000 - $5,000</option>
-                    <option>$5,000 - $15,000</option>
-                    <option>$15,000 - $35,000</option>
-                    <option>$35,000+</option>
+                    <option>₹1,00,000 - ₹3,00,000</option>
+                    <option>₹3,00,000 - ₹7,00,000</option>
+                    <option>₹7,00,000 - ₹15,00,000</option>
+                    <option>₹15,00,000+</option>
                   </select>
                 </div>
 
