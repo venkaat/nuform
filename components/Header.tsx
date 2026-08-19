@@ -51,18 +51,16 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className={`flex items-center justify-between transition-all duration-500 ${
-            isScrolled ? "h-16 sm:h-18 md:h-20" : "h-20 sm:h-24 md:h-28 lg:h-32"
+            isScrolled ? "h-[70px]" : "h-[100px]"
           }`}
         >
           {/* LOGO (TRANSPARENT BACKGROUND) */}
-          <a href="#" className="flex items-center group py-1.5">
+          <a href="#" className="flex items-center group py-1">
             <img
               src="/images/logo_light.png"
               alt="Nüform - Interior Designs & Architecture"
               className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 filter drop-shadow-md ${
-                isScrolled
-                  ? "h-12 sm:h-14 md:h-16"
-                  : "h-16 sm:h-20 md:h-24 lg:h-28"
+                isScrolled ? "h-[55px]" : "h-[80px]"
               }`}
             />
           </a>
