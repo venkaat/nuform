@@ -51,7 +51,7 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className={`relative flex items-center justify-between transition-all duration-500 ${
-            isScrolled ? "h-[70px]" : "h-[100px]"
+            isScrolled ? "h-[80px]" : "h-[145px]"
           }`}
         >
           {/* DESKTOP NAVIGATION (LEFT) */}
@@ -132,8 +132,8 @@ export default function Header({
             <img
               src="/images/logo_light.png"
               alt="Nüform - Interior Designs & Architecture"
-              className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 filter drop-shadow-md ${
-                isScrolled ? "h-[55px]" : "h-[80px]"
+              className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.85)] ${
+                isScrolled ? "h-[65px]" : "h-[125px]"
               }`}
             />
           </a>
