@@ -55,11 +55,10 @@ export default function Home() {
         </div>
       )}
 
-      {/* Navigation & Top Announcement Bar - Positioned fixed over CinematicHero, slides down into place */}
+      {/* Navigation - Positioned fixed over CinematicHero, slides down into place */}
       <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ease-out transform ${
         isNavRevealed ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
       }`}>
-        <TopAnnouncementBar />
         <Header
           onOpenSearch={() => setIsSearchOpen(true)}
           onOpenConsultation={handleOpenConsultation}

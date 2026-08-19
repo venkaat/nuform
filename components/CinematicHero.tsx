@@ -175,7 +175,7 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
       ))}
 
       {/* TOP FANCY CATEGORY PILL SELECTOR */}
-      <div className="absolute top-32 sm:top-40 md:top-52 lg:top-64 left-1/2 -translate-x-1/2 z-30 hidden md:flex items-center gap-2 bg-black/60 backdrop-blur-xl border border-white/15 p-1.5 rounded-full shadow-2xl transition-all duration-500">
+      <div className="absolute top-20 sm:top-24 md:top-28 lg:top-32 left-1/2 -translate-x-1/2 z-30 hidden md:flex items-center gap-2 bg-black/60 backdrop-blur-xl border border-white/15 p-1.5 rounded-full shadow-2xl transition-all duration-500">
         {CINEMATIC_SLIDES.map((slide, idx) => (
           <button
             key={slide.id}
@@ -193,7 +193,7 @@ export default function CinematicHero({ onOpenConsultation, onHeroLoaded }: Cine
 
       {/* FOREGROUND CONTENT - OPTIMIZED FOR UNCLUTTERED MOBILE VIEW */}
       <div
-        className="relative z-20 h-full max-w-7xl mx-auto px-5 flex flex-col justify-end sm:justify-center items-center text-center pb-24 sm:pb-28 pt-36 sm:pt-48 md:pt-60 transition-transform duration-300 ease-out"
+        className="relative z-20 h-full max-w-7xl mx-auto px-5 flex flex-col justify-end sm:justify-center items-center text-center pb-24 sm:pb-28 pt-24 sm:pt-28 md:pt-36 transition-transform duration-300 ease-out"
         style={{
           transform: `translate3d(${mousePos.x * 10}px, ${mousePos.y * 10}px, 0px)`,
         }}
